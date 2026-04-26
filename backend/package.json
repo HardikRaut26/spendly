@@ -1,23 +1,15 @@
 {
-  "name": "expensetracker",
+  "name": "spendly-backend",
   "version": "1.0.0",
-  "description": "DJSCE B.Tech CS Sem IV WD Project - Meet Chavan & Dhruv Mehta",
+  "description": "Spendly - Expense Tracker Backend",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "run_dev": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/meet242005/ExpenseTracker.git"
-  },
-  "author": "Meet Chavan",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/meet242005/ExpenseTracker/issues"
-  },
-  "homepage": "https://github.com/meet242005/ExpenseTracker#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
