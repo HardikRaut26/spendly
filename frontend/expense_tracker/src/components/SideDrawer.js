@@ -113,7 +113,7 @@ const SideDrawer = ({ isOpen, onClose }) => {
           className={`pt-2 text-white/30 flex justify-between ${isOpen ? "" : "hidden"}`}
           style={{ fontSize: "7px" }}
         >
-          &copy; 2025 Hardik Raut. All rights reserved.
+          &copy; 2025 Spendly. All rights reserved.
         </div>
       </div>
     </div>
