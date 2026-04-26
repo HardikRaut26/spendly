@@ -80,7 +80,7 @@ Spendly/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Spendly.git
+git clone https://github.com/HardikRaut26/spendly.git
 cd Spendly
 ```
 
@@ -130,4 +130,4 @@ The app will open at **http://localhost:3000** 🎉
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source.
