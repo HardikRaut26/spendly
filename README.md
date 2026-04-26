@@ -10,6 +10,8 @@
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
+🌐 **Live Demo:** [https://spendlyhere.netlify.app](https://spendlyhere.netlify.app/)
+
 </div>
 
 ---
