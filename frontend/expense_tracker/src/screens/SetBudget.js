@@ -75,16 +75,7 @@ const SetBudget = ({ onBudgetSet }) => {
       if (onBudgetSet) {
         onBudgetSet();
       }
-      toast.success("Budget Updated Successfully! 💸 ", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      });
+      toast.success("Budget Updated Successfully! 💸");
       console.log("Submitted Budgets:", budgets);
     });
   };
@@ -107,10 +98,10 @@ const SetBudget = ({ onBudgetSet }) => {
   return (
     <div>
         <h2 className="text-xl font-bold mb-2 text-gray-800">Set Budget</h2>
-        <p className="text-sm text-gray-500 mb-4">Use slider or type amount directly</p>
+        <p className="text-sm text-gray-400 mb-5">Use slider or type amount directly</p>
         <div className={div_class}>
           {Object.entries(budgets).map(([category, value]) => (
-            <div key={category} className="bg-white border border-gray-100 shadow-sm rounded-xl p-4">
+            <div key={category} className="bg-white border border-gray-100/80 shadow-sm hover:shadow-md rounded-2xl p-5 transition-shadow duration-200">
               <div className="flex items-center justify-between mb-2">
                 <label
                   className="block text-gray-800 font-semibold"
@@ -118,7 +109,7 @@ const SetBudget = ({ onBudgetSet }) => {
                 >
                   {category}
                 </label>
-                <span className="text-sm font-semibold text-blue-700">₹ {formatINR(value)}</span>
+                <span className="text-sm font-bold" style={{ color: '#6d28d9' }}>₹ {formatINR(value)}</span>
               </div>
               <input
                 type="range"
@@ -135,27 +126,27 @@ const SetBudget = ({ onBudgetSet }) => {
                   width: "100%",
                   height: "8px",
                   appearance: "none",
-                  background: `linear-gradient(to right,  #3B82F6 0%,  #3B82F6 ${
+                  background: `linear-gradient(to right, #7c3aed 0%, #7c3aed ${
                     (value / MAX_BUDGET_PER_CATEGORY) * 100
-                  }%, #d3d3d3 ${(value / MAX_BUDGET_PER_CATEGORY) * 100}%`,
+                  }%, #e2e8f0 ${(value / MAX_BUDGET_PER_CATEGORY) * 100}%)`,
                   borderRadius: "999px",
                   outline: "none",
                   margin: "10px 0 6px 0",
                 }}
               />
-              <div className="flex justify-between text-xs text-gray-500 mb-3">
+              <div className="flex justify-between text-xs text-gray-400 mb-3">
                 <span>₹ 0</span>
                 <span>₹ {formatINR(MAX_BUDGET_PER_CATEGORY)}</span>
               </div>
               <div>
                 <label
-                  className="block text-gray-600 text-xs uppercase tracking-wide mb-1"
+                  className="block text-gray-500 text-xs uppercase tracking-wide mb-1 font-medium"
                   htmlFor={`${category}-input`}
                 >
                   Amount
                 </label>
-                <div className="flex items-center border border-gray-200 rounded-lg bg-gray-50 px-2">
-                  <span className="text-gray-500 text-sm mr-2">₹</span>
+                <div className="flex items-center border border-gray-200 rounded-xl bg-gray-50/50 px-3">
+                  <span className="text-gray-400 text-sm mr-2">₹</span>
                 <input
                   id={`${category}-input`}
                   type="number"
@@ -165,21 +156,22 @@ const SetBudget = ({ onBudgetSet }) => {
                   onChange={(e) =>
                     handleAmountInputChange(category, e.target.value)
                   }
-                  className="w-full py-2 bg-transparent outline-none text-gray-800"
+                  className="w-full py-2.5 bg-transparent outline-none text-gray-800 focus:ring-0"
                 />
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <h2 className="text-lg font-semibold mt-5 text-gray-800">
-          Total Monthly Budget: ₹ {formatINR(totalBudget)}
-        </h2>
-        <div className="flex justify-end mt-4">
+        <div className="bg-white rounded-2xl p-5 mt-5 shadow-sm border border-gray-100/80 flex items-center justify-between">
+          <h2 className="text-lg font-bold text-gray-800">
+            Total Monthly Budget: <span style={{ color: '#6d28d9' }}>₹ {formatINR(totalBudget)}</span>
+          </h2>
           <button
             type="button"
             onClick={handleSubmit}
-            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 transition-colors text-white rounded-lg font-medium"
+            className="px-6 py-2.5 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200 cursor-pointer"
+            style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
           >
             Set Budget
           </button>

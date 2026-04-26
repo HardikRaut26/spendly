@@ -20,16 +20,7 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
       if (onExpenseAdded) {
         onExpenseAdded();
       }
-      toast.success("Expense Added Successfully! 💰", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.success("Expense Added Successfully! 💰");
       setName("");
       setAmount("");
       setDescription("");
@@ -40,17 +31,17 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
 
   return (
     <div >
-        <h2 className="text-xl font-bold mb-4">Add Expense</h2>
+        <h2 className="text-xl font-bold mb-4 text-gray-800">Add Expense</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4 bg-white p-4 rounded-lg shadow-sm">
+          <div className="mb-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100/80">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semibold mb-2 text-sm"
               htmlFor="name"
             >
               Name
             </label>
             <input
-              className="border rounded w-full py-2 px-3 bg-gray-50"
+              className="border border-gray-200 rounded-xl w-full py-2.5 px-3 bg-gray-50/50 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               type="text"
               id="name"
               placeholder="Enter Expense Name"
@@ -59,15 +50,15 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
               required
             />
           </div>
-          <div className="mb-4 bg-white p-4 rounded-lg shadow-sm">
+          <div className="mb-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100/80">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semibold mb-2 text-sm"
               htmlFor="amount"
             >
               Amount
             </label>
             <input
-              className="border rounded w-full py-2 px-3 bg-gray-50"
+              className="border border-gray-200 rounded-xl w-full py-2.5 px-3 bg-gray-50/50 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               type="number"
               id="amount"
               placeholder="Enter Expense Amount"
@@ -76,15 +67,15 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
               required
             />
           </div>
-          <div className="mb-4 bg-white p-4 rounded-lg shadow-sm">
+          <div className="mb-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100/80">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semibold mb-2 text-sm"
               htmlFor="description"
             >
               Description
             </label>
             <textarea
-              className="border rounded w-full py-2 px-3 h-36 resize-none bg-gray-50"
+              className="border border-gray-200 rounded-xl w-full py-2.5 px-3 h-36 resize-none bg-gray-50/50 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               id="description"
               placeholder="Enter Expense Description"
               value={description}
@@ -92,15 +83,15 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
               required
             />
           </div>
-          <div className="mb-4 bg-white p-4 rounded-lg shadow-sm">
+          <div className="mb-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100/80">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semibold mb-2 text-sm"
               htmlFor="category"
             >
               Category
             </label>
             <select
-              className="border rounded w-full py-2 px-3 bg-gray-50"
+              className="border border-gray-200 rounded-xl w-full py-2.5 px-3 bg-gray-50/50 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               id="category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -120,7 +111,8 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
           <div className="flex justify-end mt-4">
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded"
+              className="px-6 py-2.5 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200 cursor-pointer"
+              style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
             >
               Add Expense
             </button>

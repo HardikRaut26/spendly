@@ -1,10 +1,10 @@
-/* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+/* Import Google font - Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 .wrapper {
   padding: 12px;
@@ -12,8 +12,9 @@
   overflow-x: hidden;
   max-width: 90%;
   background: #fff;
-  border-radius: 25px;
-  margin: 2px black solid;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 .wrapper .icon {
   position: absolute;
@@ -41,9 +42,11 @@
   text-align: center;
   line-height: 55px;
   border-radius: 50%;
+  color: #64748b;
 }
 .icon i:hover {
-  background: #efedfb;
+  background: #e0e7ff;
+  color: #4f46e5;
 }
 .icon:first-child i {
   margin-left: 15px;
@@ -53,7 +56,7 @@
 }
 .wrapper .tabs-box {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   list-style: none;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -64,15 +67,20 @@
 }
 .tabs-box .tab {
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   white-space: nowrap;
-  background: #f5f4fd;
-  padding: 10px 25px;
-  border-radius: 30px;
-  border: 1px solid #d8d5f2;
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 9px 22px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
 }
 .tabs-box .tab:hover {
-  background: #efedfb;
+  background: #e0e7ff;
+  color: #4f46e5;
+  border-color: #c7d2fe;
 }
 .tabs-box.dragging .tab {
   user-select: none;
@@ -80,8 +88,9 @@
 }
 .tabs-box .tab.active {
   color: #fff;
-  background: #5372f0;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
   border-color: transparent;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -107,7 +116,7 @@
 
 @media (max-width: 480px) {
   .tab {
-    font-size: 14px;
+    font-size: 13px;
   }
   .icon {
     font-size: 20px;

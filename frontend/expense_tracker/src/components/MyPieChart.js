@@ -3,9 +3,15 @@ import Chart from "chart.js/auto";
 
 const MyPieChart = ({ stats }) => {
   const chartRef = useRef(null);
+  const chartInstance = useRef(null);
 
   useEffect(() => {
     if (!stats) return;
+
+    // Destroy previous chart instance if it exists
+    if (chartInstance.current) {
+      chartInstance.current.destroy();
+    }
 
     const ctx = chartRef.current.getContext("2d");
 
@@ -24,47 +30,59 @@ const MyPieChart = ({ stats }) => {
           (stats?.categorySpends["Others"] / stats?.totalMonthlySpend) * 100,
         ],
         backgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56",
-          "#4BC0C0",
-          "#9966FF",
-          "#FF8C9A",
-          "#8BE87B",
-          "#CDA776",
+          "#f59e0b",
+          "#3b82f6",
+          "#6366f1",
+          "#10b981",
+          "#ec4899",
+          "#0ea5e9",
+          "#a855f7",
+          "#64748b",
         ],
         hoverBackgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56",
-          "#4BC0C0",
-          "#9966FF",
-          "#FF8C9A",
-          "#8BE87B",
-          "#CDA776",
+          "#d97706",
+          "#2563eb",
+          "#4f46e5",
+          "#059669",
+          "#db2777",
+          "#0284c7",
+          "#9333ea",
+          "#475569",
         ],
+        borderWidth: 2,
+        borderColor: '#ffffff',
       }],
     };
 
     // Create the doughnut chart
-    new Chart(ctx, {
+    chartInstance.current = new Chart(ctx, {
       type: "doughnut",
       data: data,
       options: {
         plugins: {
           legend: {
-            position: 'right', // Position legend to the right
+            position: 'right',
+            labels: {
+              padding: 16,
+              usePointStyle: true,
+              pointStyle: 'circle',
+              font: {
+                family: 'Inter',
+                size: 12,
+              },
+            },
           },
         },
         layout: {
           padding: {
-            top:30,
-            bottom: 30, // Add padding to the left of the chart
-            right: 0, // Add padding to the right of the chart
+            top: 30,
+            bottom: 30,
+            right: 0,
           }
         },
         aspectRatio: 2, 
         maintainAspectRatio: false, 
+        cutout: '65%',
       },
     });
   }, [stats]);

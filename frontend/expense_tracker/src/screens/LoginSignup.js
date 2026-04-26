@@ -56,80 +56,86 @@ const LoginSignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-blue-700 flex justify-center items-center">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <div className="flex justify-center mb-8">
-        <h4 className="text-black text-xl font-bold">Spendly</h4>
+    <div className="min-h-screen flex justify-center items-center" style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #6d28d9 100%)' }}>
+      <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-96 border border-white/20">
+        <div className="flex flex-col items-center mb-8">
+          <div className="text-3xl mb-2">💸</div>
+          <h4 className="text-2xl font-bold" style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Spendly</h4>
+          <p className="text-gray-400 text-sm mt-1">{isLogin ? "Welcome back!" : "Create your account"}</p>
         </div>
         {successMessage && (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4 text-sm text-center">
-            {successMessage}
+          <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-2.5 rounded-xl mb-4 text-sm text-center font-medium">
+            ✅ {successMessage}
           </div>
         )}
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4 text-sm text-center">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-2.5 rounded-xl mb-4 text-sm text-center font-medium">
             {error}
           </div>
         )}
         <form>
           {!isLogin && (
             <div className="mb-4">
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="username" className="block text-sm font-medium text-gray-600 mb-1">
                 Username
               </label>
               <input
                 type="text"
                 id="username"
                 name="username"
-                className="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500"
+                className="p-2.5 block w-full rounded-xl border border-gray-200 bg-gray-50/50 shadow-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
                 placeholder="Enter your username"
                 required
               />
             </div>
           )}
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">
               Email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              className="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500"
+              className="p-2.5 block w-full rounded-xl border border-gray-200 bg-gray-50/50 shadow-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               placeholder="Enter your email"
               required
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          <div className="mb-5">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-600 mb-1">
               Password
             </label>
             <input
               type="password"
               id="password"
               name="password"
-              className="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500"
+              className="p-2.5 block w-full rounded-xl border border-gray-200 bg-gray-50/50 shadow-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               placeholder="Enter your password"
               required
             />
           </div>
-          <div className="text-sm text-gray-700 mb-3 flex justify-between">  {isLogin ? "Don't have an account?" : "Already have an account?"}   <div className="text-sm text-blue-700 mb-3 cursor-pointer hover:underline"  onClick={toggleForm}>  {isLogin ? "Sign Up" : "Log In"} </div></div>
+          <div className="text-sm text-gray-500 mb-4 flex justify-between">
+            {isLogin ? "Don't have an account?" : "Already have an account?"}
+            <div className="text-sm font-semibold cursor-pointer hover:underline transition-colors"
+                 style={{ color: '#6d28d9' }}
+                 onClick={toggleForm}>
+              {isLogin ? "Sign Up" : "Log In"}
+            </div>
+          </div>
           <div className="flex justify-between">
             <button
               type="submit"
               onClick={handleSubmit}
-              className="bg-blue-700 text-white py-2 px-4 w-full rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500 cursor-pointer"
+              className="text-white py-2.5 px-4 w-full rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-indigo-300 cursor-pointer transition-all duration-200"
+              style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
             >
               {isLogin ? "Log In" : "Sign Up"}
             </button>
-           
-           
           </div>
-
         </form>
-        <img src={login} alt="Spendly" className="w-full  mt-6" />
+        <img src={login} alt="Spendly" className="w-full mt-6 opacity-80" />
       </div>
-      
     </div>
   );
 };

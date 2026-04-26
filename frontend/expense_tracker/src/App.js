@@ -73,7 +73,7 @@ const App = ({ activeMonth }) => {
   const isMobile = window.innerWidth <= 768; 
   return (
     <div className="container">
-      <h1 className="text-xl mb-2 mt-4 font-semibold text-gray-800">
+      <h1 className="text-xl mb-3 mt-4 font-bold text-gray-800">
         Dashboard
       </h1>
       <div className="flex flex-col md:flex-row md:flex-wrap justify-between">
@@ -82,7 +82,7 @@ const App = ({ activeMonth }) => {
           totalBudget={stats?.monthlyBudget}
           allTotalSpends={stats?.totalSpendAllTime}
         />
-        <div className="bg-white shadow-md rounded-xl p-0 flex-grow h-56 my-2 md:my-0.5 flex justify-center">
+        <div className="bg-white shadow-sm hover:shadow-md rounded-2xl p-0 flex-grow h-56 my-2 md:my-0.5 flex justify-center transition-shadow duration-200 border border-gray-100/80">
           {/* <PieChart
 
             series={[
@@ -163,7 +163,7 @@ const App = ({ activeMonth }) => {
           />
         </div>
       </div>
-      <h1 className="text-xl mb-2 mt-4 font-semibold text-gray-800">
+      <h1 className="text-xl mb-3 mt-6 font-bold text-gray-800">
         Recent Expenses
       </h1>
       <div className="flex justify-between overflow-x-auto">
@@ -177,7 +177,7 @@ const App = ({ activeMonth }) => {
           />
         ))}
       </div>
-      <h1 className="text-xl mb-2 mt-4 font-semibold text-gray-800">
+      <h1 className="text-xl mb-3 mt-6 font-bold text-gray-800">
         Category Spendings
       </h1>
       <div className= {`flex justify-between overflow-x-auto ${isMobile ? "flex-col" : ""} `}>

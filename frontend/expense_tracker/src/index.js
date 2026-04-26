@@ -36,9 +36,9 @@ function RouteApp() {
     return <SideDrawer isOpen={isDrawerOpen} onClose={toggleDrawer} />;
   };
 
-  var div_class = isDrawerOpen ? "my-1.5  bg-gray-50  rounded-tl-3xl rounded-bl-3xl px-4 py-4   w-full" : " bg-gray-50   px-4 py-4   w-full";
+  var div_class = isDrawerOpen ? "my-1.5  bg-gray-50  rounded-tl-3xl rounded-bl-3xl px-4 py-4   w-full overflow-y-auto" : " bg-gray-50   px-4 py-4   w-full overflow-y-auto";
   return (
-    <div className="flex bg-blue-700">
+    <div className="flex" style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #6d28d9 100%)' }}>
       {renderSideDrawer()}
       <div className={div_class}>
         <Routes>
