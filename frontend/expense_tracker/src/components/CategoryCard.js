@@ -26,12 +26,11 @@ const CategoryCard = ({ category, icon, spends, totalBudget }) => {
       ? "#10b981"
       : percentageSpent < 80
       ? "#f59e0b"
-      : totalBudget == 0
+      : totalBudget === 0
       ? "#e2e8f0"
       : "#ef4444";
 
-  // Check screen width
-  const isMobile = window.innerWidth <= 768; 
+
 
   return (
     <div className="bg-white shadow-sm hover:shadow-md rounded-2xl p-5 w-full my-2 mx-0.5 transition-shadow duration-200 border border-gray-100/80">

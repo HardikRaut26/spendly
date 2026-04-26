@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import AddExpensePopup from "./screens/Addpopup";
 import SetBudget from "./screens/SetBudget";
-import { useCookies } from "react-cookie";
 import moment from "moment";
 import { ToastContainer } from "react-toastify";
 import Myexpense from "./screens/Myexpense";

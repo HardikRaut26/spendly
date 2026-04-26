@@ -14,8 +14,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SideDrawer = ({ isOpen, onClose }) => {
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const [userId, setUserId] = useState(cookies.userId);
+  const [cookies, , removeCookie] = useCookies();
+  const [userId] = useState(cookies.userId);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,6 +41,7 @@ const SideDrawer = ({ isOpen, onClose }) => {
     if (!user) {
       loadUserProfile();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   // Function to get the initials from the name

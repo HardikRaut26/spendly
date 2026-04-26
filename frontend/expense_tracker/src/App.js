@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CategoryCard from "./components/CategoryCard";
 import TotalCard from "./components/TotalCard";
-import SideDrawer from "./components/SideDrawer";
-import { PieChart } from "@mui/x-charts/PieChart";
 import { useCookies } from "react-cookie";
-import moment from "moment";
 
 import {
   faBathtub,
@@ -16,7 +13,7 @@ import {
   faUmbrellaBeach,
   faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
-import { loadStats, getExpensesByUser, loginUser } from "./Api.js";
+import { loadStats, getExpensesByUser } from "./Api.js";
 import DashboardExpenseCard from "./components/DashboardExpenseCard.js";
 import MyPieChart from "./components/MyPieChart.js";
 import ScrollReveal from "./components/ScrollReveal.js";
@@ -34,8 +31,8 @@ const icons = {
 };
 
 const App = ({ activeMonth }) => {
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const [userId, setUserId] = useState(cookies.userId?._id);
+  const [cookies] = useCookies();
+  const [userId] = useState(cookies.userId?._id);
 
   const [stats, setStats] = useState(null);
   const [expenses, setExpenses] = useState(null);
@@ -70,6 +67,7 @@ const App = ({ activeMonth }) => {
       fetchStats();
       fetchExpenses();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, activeMonth]);
 
   const isMobile = window.innerWidth <= 768; 

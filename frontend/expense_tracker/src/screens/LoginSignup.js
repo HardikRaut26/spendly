@@ -7,7 +7,7 @@ import  login  from "../assets/login.svg";
 
 const LoginSignupPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [cookies, setCookie] = useCookies();
+  const [, setCookie] = useCookies();
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
@@ -33,14 +33,14 @@ const LoginSignupPage = () => {
         const userData = await response.data;
 
         setCookie("userId", userData); 
-        if(response.status == "success")
+        if(response.status === "success")
         {
             navigate("/dashBoard", { replace: true })
         }
       
       } else {
         const response = await createUser(username, email, password);
-          if(response.status == "success")
+          if(response.status === "success")
         {
             toast.success("Account created successfully! 🎉");
             setSuccessMessage("Account created successfully! Please log in.");

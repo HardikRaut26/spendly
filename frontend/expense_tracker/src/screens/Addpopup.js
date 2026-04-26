@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import SideDrawer from "../components/SideDrawer";
 import { createExpense } from "../Api";
 import { toast } from "react-toastify";
 import {useCookies} from 'react-cookie';
 import ScrollReveal from "../components/ScrollReveal";
 
 const AddExpensePopup = ({ onExpenseAdded }) => {
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const [userId, setUserId] = useState(cookies.userId);
+  const [cookies] = useCookies();
+  const [userId] = useState(cookies.userId);
 
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [isSideDrawerOpen] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();

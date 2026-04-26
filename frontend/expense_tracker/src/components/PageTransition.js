@@ -52,6 +52,7 @@ const PageTransition = ({ children }) => {
     }, 350);
 
     return () => clearTimeout(skeletonTimer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   // Update children when they change (e.g., data loads) but path hasn't changed
@@ -59,6 +60,7 @@ const PageTransition = ({ children }) => {
     if (phase === 'content') {
       setDisplayChildren(children);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children]);
 
   const SkeletonComponent = skeletonMap[currentPath];

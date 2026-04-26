@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { loadUser } from "../Api";
-import SideDrawer from "../components/SideDrawer";
 import { updateBudget } from "../Api";
 import { toast } from "react-toastify";
 import {useCookies} from 'react-cookie';
@@ -14,8 +13,8 @@ const clampBudgetValue = (value) =>
 const formatINR = (value) => Number(value || 0).toLocaleString("en-IN");
 
 const SetBudget = ({ onBudgetSet }) => {
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const [userId, setUserId] = useState(cookies.userId);
+  const [cookies] = useCookies();
+  const [userId] = useState(cookies.userId);
 
   const [totalBudget, setTotalBudget] = useState(0);
   const [user, setUser] = useState(null);
@@ -29,7 +28,7 @@ const SetBudget = ({ onBudgetSet }) => {
     "Personal Care": 0,
     Others: 0,
   });
-  const [isSideDrawerOpen] = useState(true);
+
 
   const loadUserProfile = async () => {
     console.log("Loading user...");
@@ -47,6 +46,7 @@ const SetBudget = ({ onBudgetSet }) => {
     if (!user) {
       loadUserProfile();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const updateCategoryBudget = (category, rawValue) => {
