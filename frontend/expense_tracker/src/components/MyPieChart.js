@@ -6,16 +6,16 @@ const MyPieChart = ({ stats }) => {
   const chartInstance = useRef(null);
 
   useEffect(() => {
-    if (!stats) return;
+    if (!stats || !chartRef.current) return;
 
-    // Destroy previous chart instance if it exists
+    // Destroy previous chart instance
     if (chartInstance.current) {
       chartInstance.current.destroy();
+      chartInstance.current = null;
     }
 
     const ctx = chartRef.current.getContext("2d");
 
-    // Prepare your data for the doughnut chart
     const data = {
       labels: ["Food & Dining", "Housing", "Transportation", "Healthcare", "Entertainment", "Utilities", "Personal Care", "Others"],
       datasets: [{
@@ -54,43 +54,55 @@ const MyPieChart = ({ stats }) => {
       }],
     };
 
-    // Create the doughnut chart
     chartInstance.current = new Chart(ctx, {
       type: "doughnut",
       data: data,
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 400,
+        },
+        onResize: (chart) => {
+          chart.options.animation.duration = 0; // No animation during resize
+        },
         plugins: {
           legend: {
             position: 'right',
             labels: {
-              padding: 16,
+              padding: 10,
               usePointStyle: true,
               pointStyle: 'circle',
               font: {
                 family: 'Inter',
-                size: 12,
+                size: 11,
               },
             },
           },
         },
         layout: {
           padding: {
-            top: 30,
-            bottom: 30,
+            top: 10,
+            bottom: 10,
             right: 0,
           }
         },
-        aspectRatio: 2, 
-        maintainAspectRatio: false, 
         cutout: '65%',
       },
     });
+
+    return () => {
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+        chartInstance.current = null;
+      }
+    };
   }, [stats]);
 
   return (
-    
-        <canvas ref={chartRef}></canvas>
-  
+    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
+      <canvas ref={chartRef}></canvas>
+    </div>
   );
 };
 

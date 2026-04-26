@@ -13,6 +13,7 @@ import Myexpense from "./screens/Myexpense";
 import 'react-toastify/dist/ReactToastify.css';
 import LoginSignupPage from "./screens/LoginSignup";
 import SideDrawer from "./components/SideDrawer";
+import PageTransition from "./components/PageTransition";
 
 function RouteApp() {
   const location = useLocation();
@@ -41,14 +42,16 @@ function RouteApp() {
     <div className="flex" style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #6d28d9 100%)' }}>
       {renderSideDrawer()}
       <div className={div_class}>
-        <Routes>
-          <Route path="/" element={<LoginSignupPage />} />
-          <Route path="login" element={<LoginSignupPage />} />
-          <Route path="dashboard" element={<App key={refreshKey} activeMonth={activeMonth} />} />
-          <Route path="myExpense" element={<Myexpense key={refreshKey} activeMonth={activeMonth} setActiveMonth={setActiveMonth} />} />
-          <Route path="addExpense" element={<AddExpensePopup onExpenseAdded={handleDataRefresh} />} />
-          <Route path="setBudget" element={<SetBudget onBudgetSet={handleDataRefresh} />} />
-        </Routes>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<LoginSignupPage />} />
+            <Route path="login" element={<LoginSignupPage />} />
+            <Route path="dashboard" element={<App key={refreshKey} activeMonth={activeMonth} />} />
+            <Route path="myExpense" element={<Myexpense key={refreshKey} activeMonth={activeMonth} setActiveMonth={setActiveMonth} />} />
+            <Route path="addExpense" element={<AddExpensePopup onExpenseAdded={handleDataRefresh} />} />
+            <Route path="setBudget" element={<SetBudget onBudgetSet={handleDataRefresh} />} />
+          </Routes>
+        </PageTransition>
       </div>
       <ToastContainer position="top-right" autoClose={3000} />
     </div>

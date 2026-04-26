@@ -19,6 +19,8 @@ import {
 import { loadStats, getExpensesByUser, loginUser } from "./Api.js";
 import DashboardExpenseCard from "./components/DashboardExpenseCard.js";
 import MyPieChart from "./components/MyPieChart.js";
+import ScrollReveal from "./components/ScrollReveal.js";
+import { DashboardSkeleton } from "./components/Skeleton.js";
 
 const icons = {
   "Food & Dining": faUtensils,
@@ -71,141 +73,79 @@ const App = ({ activeMonth }) => {
   }, [userId, activeMonth]);
 
   const isMobile = window.innerWidth <= 768; 
+  if (!stats || !expenses) {
+    return <DashboardSkeleton />;
+  }
+
   return (
     <div className="container">
-      <h1 className="text-xl mb-3 mt-4 font-bold text-gray-800">
-        Dashboard
-      </h1>
-      <div className="flex flex-col md:flex-row md:flex-wrap justify-between">
-        <TotalCard
-          spends={stats?.totalMonthlySpend}
-          totalBudget={stats?.monthlyBudget}
-          allTotalSpends={stats?.totalSpendAllTime}
-        />
-        <div className="bg-white shadow-sm hover:shadow-md rounded-2xl p-0 flex-grow h-56 my-2 md:my-0.5 flex justify-center transition-shadow duration-200 border border-gray-100/80">
-          {/* <PieChart
-
-            series={[
-              {
-                data: [
-                  {
-                    id: 0,
-                    value:
-                      (stats?.categorySpends["Food & Dining"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Food & Dining",
-                  },
-                  {
-                    id: 1,
-                    value:
-                      (stats?.categorySpends["Housing"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Housing",
-                  },
-                  {
-                    id: 2,
-                    value:
-                      (stats?.categorySpends["Transportation"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Transportation",
-                  },
-                  {
-                    id: 3,
-                    value:
-                      (stats?.categorySpends["Healthcare"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Healthcare",
-                  },
-                  {
-                    id: 4,
-                    value:
-                      (stats?.categorySpends["Entertainment"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Entertainment",
-                  },
-                  {
-                    id: 5,
-                    value:
-                      (stats?.categorySpends["Utilities"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Utilities",
-                  },
-                  {
-                    id: 6,
-                    value:
-                      (stats?.categorySpends["Personal Care"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Personal Care",
-                  },
-                  {
-                    id: 7,
-                    value:
-                      (stats?.categorySpends["Others"] /
-                        stats?.totalMonthlySpend) *
-                      100,
-                    label: "Others",
-                  },
-                ],
-
-                innerRadius: 30,
-                paddingAngle: 1,
-                cornerRadius: 5,
-              },
-            ]} */}
-            <MyPieChart stats={stats}
+      <ScrollReveal animation="fade-up">
+        <h1 className="text-xl mb-3 mt-4 font-bold text-gray-800">
+          Dashboard
+        </h1>
+      </ScrollReveal>
+      <ScrollReveal animation="fade-up" delay={100}>
+        <div className="flex flex-col md:flex-row md:flex-wrap justify-between">
+          <TotalCard
+            spends={stats?.totalMonthlySpend}
+            totalBudget={stats?.monthlyBudget}
+            allTotalSpends={stats?.totalSpendAllTime}
           />
+          <div className="bg-white shadow-sm hover:shadow-md rounded-2xl p-2 flex-grow h-56 my-2 md:my-0.5 transition-shadow duration-200 border border-gray-100/80 overflow-hidden relative">
+            <MyPieChart stats={stats} />
+          </div>
         </div>
-      </div>
-      <h1 className="text-xl mb-3 mt-6 font-bold text-gray-800">
-        Recent Expenses
-      </h1>
+      </ScrollReveal>
+      <ScrollReveal animation="fade-up" delay={200}>
+        <h1 className="text-xl mb-3 mt-6 font-bold text-gray-800">
+          Recent Expenses
+        </h1>
+      </ScrollReveal>
       <div className="flex justify-between overflow-x-auto">
-        {expenses?.map((expense) => (
-          <DashboardExpenseCard
-            key={expense._id}
-            name={expense.name}
-            amount={expense.amount}
-            category={expense.category}
-            date={expense.date}
-          />
+        {expenses?.map((expense, index) => (
+          <ScrollReveal key={expense._id} animation="scale-in" stagger={index} style={{ flex: '1 1 0%', minWidth: 0 }}>
+            <DashboardExpenseCard
+              name={expense.name}
+              amount={expense.amount}
+              category={expense.category}
+              date={expense.date}
+            />
+          </ScrollReveal>
         ))}
       </div>
-      <h1 className="text-xl mb-3 mt-6 font-bold text-gray-800">
-        Category Spendings
-      </h1>
-      <div className= {`flex justify-between overflow-x-auto ${isMobile ? "flex-col" : ""} `}>
+      <ScrollReveal animation="fade-up">
+        <h1 className="text-xl mb-3 mt-6 font-bold text-gray-800">
+          Category Spendings
+        </h1>
+      </ScrollReveal>
+      <div className={`flex justify-between overflow-x-auto ${isMobile ? "flex-col" : ""} `}>
   {stats?.categorySpends &&
     Object.entries(stats.categorySpends)
       .slice(0, 4)
-      .map(([category, spends]) => (
-        <CategoryCard
-          key={category}
-          category={category}
-          icon={icons[category]}
-          spends={spends}
-          totalBudget={stats.categoryBudgets[category]}
-        />
+      .map(([category, spends], index) => (
+        <ScrollReveal key={category} animation="fade-up" stagger={index} style={{ flex: '1 1 0%', minWidth: 0 }}>
+          <CategoryCard
+            category={category}
+            icon={icons[category]}
+            spends={spends}
+            totalBudget={stats.categoryBudgets[category]}
+          />
+        </ScrollReveal>
       ))}
 </div>
 <div className={`flex justify-between overflow-x-auto ${isMobile ? "flex-col" : ""} `}>
   {stats?.categorySpends &&
     Object.entries(stats.categorySpends)
       .slice(4, 8)
-      .map(([category, spends]) => (
-        <CategoryCard
-          key={category}
-          category={category}
-          icon={icons[category]}
-          spends={spends}
-          totalBudget={stats.categoryBudgets[category]}
-        />
+      .map(([category, spends], index) => (
+        <ScrollReveal key={category} animation="fade-up" stagger={index} style={{ flex: '1 1 0%', minWidth: 0 }}>
+          <CategoryCard
+            category={category}
+            icon={icons[category]}
+            spends={spends}
+            totalBudget={stats.categoryBudgets[category]}
+          />
+        </ScrollReveal>
       ))}
 </div>
 

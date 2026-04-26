@@ -4,14 +4,34 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* ============================================
+   GLOBAL FOUNDATIONS
+   ============================================ */
+
 * {
   font-family: 'Inter', sans-serif;
 }
 
-/* Scrollbar styling */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth momentum scrolling for overflow containers */
+.overflow-y-auto,
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -19,15 +39,139 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.25);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(139, 92, 246, 0.45);
 }
 
-/* Custom range slider for budget page */
+/* ============================================
+   PAGE TRANSITIONS
+   ============================================ */
+
+.page-transition {
+  will-change: opacity, transform;
+}
+
+.page-transition.enter {
+  animation: pageEnter 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-transition.exit {
+  animation: pageExit 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+
+.scroll-reveal {
+  will-change: opacity, transform;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fade Up */
+.scroll-reveal.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.scroll-reveal.fade-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade In */
+.scroll-reveal.fade-in {
+  opacity: 0;
+}
+.scroll-reveal.fade-in.revealed {
+  opacity: 1;
+}
+
+/* Fade Left */
+.scroll-reveal.fade-left {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+.scroll-reveal.fade-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Right */
+.scroll-reveal.fade-right {
+  opacity: 0;
+  transform: translateX(24px);
+}
+.scroll-reveal.fade-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale In */
+.scroll-reveal.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.scroll-reveal.scale-in.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================================
+   PREMIUM HOVER INTERACTIONS
+   ============================================ */
+
+/* Cards — subtle lift on hover */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.08),
+              0 4px 10px -3px rgba(0, 0, 0, 0.04);
+}
+
+/* Buttons — scale + glow */
+button, [role="button"] {
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Links — smooth color */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* ============================================
+   RANGE SLIDER STYLING
+   ============================================ */
+
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -45,16 +189,80 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: linear-gradient(135deg, #7c3aed, #a78bfa);
   border: 3px solid white;
-  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.15s ease;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
+  transform: scale(1.2);
+  box-shadow: 0 3px 12px rgba(124, 58, 237, 0.5);
 }
 
-/* Smooth transitions for interactive elements */
-button, a, .tab, .chip, li {
-  transition: all 0.2s ease;
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+/* ============================================
+   SMOOTH GLOBAL TRANSITIONS
+   ============================================ */
+
+/* Interactive elements get smooth transitions */
+li, .tab, .chip {
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Table rows — subtle highlight */
+tr {
+  transition: background-color 0.15s ease;
+}
+
+/* Input focus glow */
+input:focus, textarea:focus, select:focus {
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+/* ============================================
+   LOADING SHIMMER (for skeleton states)
+   ============================================ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease infinite;
+}
+
+/* ============================================
+   ACCESSIBILITY — REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .page-transition {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

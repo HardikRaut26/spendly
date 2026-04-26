@@ -5,6 +5,7 @@ import { getExpensesByUser, loadStats } from "../Api";
 import moment from "moment";
 import { useCookies } from "react-cookie";
 import ChipSlider from "../components/chipfilter/chipSlider";
+import ScrollReveal from "../components/ScrollReveal";
 import {
   faBathtub,
   faCheckCircle,
@@ -92,6 +93,7 @@ const Myexpense = ({ activeMonth, setActiveMonth }) => {
           setActiveTab={setActiveTab}
         />
       </div>
+      <ScrollReveal animation="fade-up">
       <div className="mt-4 bg-white rounded-2xl shadow-sm border border-gray-100/80 overflow-hidden">
         <table className="w-full divide-y divide-gray-100">
           <thead className="bg-gray-50/80">
@@ -170,6 +172,7 @@ const Myexpense = ({ activeMonth, setActiveMonth }) => {
           </tbody>
         </table>
       </div>
+      </ScrollReveal>
     </div>
   );
 };

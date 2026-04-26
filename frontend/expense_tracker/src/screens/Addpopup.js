@@ -3,6 +3,7 @@ import SideDrawer from "../components/SideDrawer";
 import { createExpense } from "../Api";
 import { toast } from "react-toastify";
 import {useCookies} from 'react-cookie';
+import ScrollReveal from "../components/ScrollReveal";
 
 const AddExpensePopup = ({ onExpenseAdded }) => {
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -31,8 +32,11 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
 
   return (
     <div >
-        <h2 className="text-xl font-bold mb-4 text-gray-800">Add Expense</h2>
+        <ScrollReveal animation="fade-up">
+          <h2 className="text-xl font-bold mb-4 text-gray-800">Add Expense</h2>
+        </ScrollReveal>
         <form onSubmit={handleSubmit}>
+          <ScrollReveal animation="fade-up" stagger={0}>
           <div className="mb-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100/80">
             <label
               className="block text-gray-700 font-semibold mb-2 text-sm"
@@ -50,6 +54,8 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
               required
             />
           </div>
+          </ScrollReveal>
+          <ScrollReveal animation="fade-up" stagger={1}>
           <div className="mb-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100/80">
             <label
               className="block text-gray-700 font-semibold mb-2 text-sm"
@@ -67,6 +73,7 @@ const AddExpensePopup = ({ onExpenseAdded }) => {
               required
             />
           </div>
+          </ScrollReveal>
           <div className="mb-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100/80">
             <label
               className="block text-gray-700 font-semibold mb-2 text-sm"

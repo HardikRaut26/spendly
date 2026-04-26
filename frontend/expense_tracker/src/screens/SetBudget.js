@@ -4,6 +4,7 @@ import SideDrawer from "../components/SideDrawer";
 import { updateBudget } from "../Api";
 import { toast } from "react-toastify";
 import {useCookies} from 'react-cookie';
+import ScrollReveal from "../components/ScrollReveal";
 
 const MAX_BUDGET_PER_CATEGORY = 100000;
 
@@ -97,11 +98,14 @@ const SetBudget = ({ onBudgetSet }) => {
   const div_class = isMobile ? "grid grid-cols-1 gap-4" : "grid grid-cols-2 gap-5";
   return (
     <div>
-        <h2 className="text-xl font-bold mb-2 text-gray-800">Set Budget</h2>
-        <p className="text-sm text-gray-400 mb-5">Use slider or type amount directly</p>
+        <ScrollReveal animation="fade-up">
+          <h2 className="text-xl font-bold mb-2 text-gray-800">Set Budget</h2>
+          <p className="text-sm text-gray-400 mb-5">Use slider or type amount directly</p>
+        </ScrollReveal>
         <div className={div_class}>
-          {Object.entries(budgets).map(([category, value]) => (
-            <div key={category} className="bg-white border border-gray-100/80 shadow-sm hover:shadow-md rounded-2xl p-5 transition-shadow duration-200">
+          {Object.entries(budgets).map(([category, value], index) => (
+            <ScrollReveal key={category} animation="fade-up" stagger={index}>
+            <div className="bg-white border border-gray-100/80 shadow-sm hover:shadow-md rounded-2xl p-5 transition-shadow duration-200">
               <div className="flex items-center justify-between mb-2">
                 <label
                   className="block text-gray-800 font-semibold"
@@ -161,6 +165,7 @@ const SetBudget = ({ onBudgetSet }) => {
                 </div>
               </div>
             </div>
+            </ScrollReveal>
           ))}
         </div>
         <div className="bg-white rounded-2xl p-5 mt-5 shadow-sm border border-gray-100/80 flex items-center justify-between">
