@@ -10,20 +10,22 @@ const LoginSignupPage = () => {
   const [, setCookie] = useCookies();
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
     setError(null);
     setSuccessMessage(null);
+    setEmail("");
+    setPassword("");
+    setUsername("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const username = document.getElementById("username")?.value;
 
     try {
       if (isLogin) {
@@ -45,6 +47,9 @@ const LoginSignupPage = () => {
             toast.success("Account created successfully! 🎉");
             setSuccessMessage("Account created successfully! Please log in.");
             setIsLogin(true);
+            setEmail("");
+            setPassword("");
+            setUsername("");
         } else {
             setError(response.message || "Signup failed. Please try again.");
         }
@@ -73,7 +78,7 @@ const LoginSignupPage = () => {
             {error}
           </div>
         )}
-        <form>
+        <form onSubmit={handleSubmit}>
           {!isLogin && (
             <div className="mb-4">
               <label htmlFor="username" className="block text-sm font-medium text-gray-600 mb-1">
@@ -83,6 +88,8 @@ const LoginSignupPage = () => {
                 type="text"
                 id="username"
                 name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="p-2.5 block w-full rounded-xl border border-gray-200 bg-gray-50/50 shadow-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
                 placeholder="Enter your username"
                 required
@@ -97,6 +104,8 @@ const LoginSignupPage = () => {
               type="email"
               id="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="p-2.5 block w-full rounded-xl border border-gray-200 bg-gray-50/50 shadow-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               placeholder="Enter your email"
               required
@@ -110,6 +119,8 @@ const LoginSignupPage = () => {
               type="password"
               id="password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="p-2.5 block w-full rounded-xl border border-gray-200 bg-gray-50/50 shadow-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all"
               placeholder="Enter your password"
               required
@@ -126,7 +137,6 @@ const LoginSignupPage = () => {
           <div className="flex justify-between">
             <button
               type="submit"
-              onClick={handleSubmit}
               className="text-white py-2.5 px-4 w-full rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-indigo-300 cursor-pointer transition-all duration-200"
               style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
             >
