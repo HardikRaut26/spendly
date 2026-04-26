@@ -1,0 +1,28 @@
+{
+  "name": "expensetracker",
+  "version": "1.0.0",
+  "description": "DJSCE B.Tech CS Sem IV WD Project - Meet Chavan & Dhruv Mehta",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "run_dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meet242005/ExpenseTracker.git"
+  },
+  "author": "Meet Chavan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meet242005/ExpenseTracker/issues"
+  },
+  "homepage": "https://github.com/meet242005/ExpenseTracker#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.19.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.3.2"
+  }
+}
